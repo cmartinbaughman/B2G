@@ -3,7 +3,7 @@
 REPO=${REPO:-./repo}
 
 repo_sync() {
-	rm -rf .repo/manifest* &&
+	#rm -rf .repo/manifest* &&
 	$REPO init -u $GITREPO -b $BRANCH -m $1.xml &&
 	$REPO sync
 	ret=$?
@@ -56,6 +56,11 @@ case "$1" in
 
 "galaxy-nexus")
 	echo DEVICE=maguro >> .tmp-config &&
+	repo_sync $1
+	;;
+
+"shooter")
+	echo DEVICE=shooter >> .tmp-config &&
 	repo_sync $1
 	;;
 
